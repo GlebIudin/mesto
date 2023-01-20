@@ -1,4 +1,4 @@
-.profile__info__description {
+.profile__description {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 750px) {
-    .profile__info__description {
+    .profile__description {
         align-self: center;
         text-align:center;
         font-size: 14px;

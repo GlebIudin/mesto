@@ -1,5 +1,5 @@
 const openPopup = document.querySelector('.popup');
-const editButton = document.querySelector('.profile__info__edit-button');
+const editButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelector('.popup__close-button')
 
 function popOpen() {
@@ -30,8 +30,8 @@ function handleFormSubmit(evt) {
     console.log(nameInput.value);
     console.log(jobInput.value);
     // Выберите элементы, куда должны быть вставлены значения полей
-let name = document.querySelector('.profile__info__username');
-let job = document.querySelector('.profile__info__description');
+let name = document.querySelector('.profile__username');
+let job = document.querySelector('.profile__description');
 
     // Вставьте новые значения с помощью textContent
     name.textContent = nameInput.value;
