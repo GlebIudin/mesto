@@ -12,3 +12,14 @@
     margin-right: 64px;
     margin-bottom: 54px;
 }
+
+@media screen and (max-width: 520px) {
+    .popup__title {
+        font-size: 18px;
+        line-height: 22px;
+        margin: 0;
+        margin-top: 25px;
+        margin-bottom: 75px;
+        text-align: center;
+    }
+}
