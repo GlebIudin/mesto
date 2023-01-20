@@ -1,0 +1,44 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/fonts.css);
+
+@import url(../blocks/page/page.css);
+
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+
+@import url(../blocks/main/main.css);
+
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__info/_description/profile__info_description.css);
+@import url(../blocks/profile/__info/_edit-button/profile__info_edit-button.css);
+@import url(../blocks/profile/__edit-image/profile__edit-image.css);
+@import url(../blocks/profile/__info/_username/profile__info_username.css);
+@import url(../blocks/profile/__add-button/profile__add-button.css);
+@import url(../blocks/profile/__add-image/profile__add-image.css);
+
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/elements/elements__element/elements__element.css);
+@import url(../blocks/elements/elements__panel/elements__panel.css);
+@import url(../blocks/elements/elements__header/elements__header.css);
+@import url(../blocks/elements/elements__like-button/elements__like-button.css);
+@import url(../blocks/elements/elements__photo/elements__photo.css);
+@import url(../blocks/elements/__bar/elements__bar.css);
+
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__sign/footer__sign.css);
+
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__save-button/popup__save-button.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
+@import url(../blocks/popup/__close-img/popup__close-img.css);
+@import url(../blocks/popup/__opened/popup__opened.css);
+
+@import url(../);
+@import url(../);
+@import url(../);

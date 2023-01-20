@@ -1,0 +1,15 @@
+.elements__like-button {
+    max-width: 22px;
+    display: flex;
+    justify-self: flex-end;
+    align-self: flex-end;
+}
+
+.elements__like-button:hover {
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
+.elements__like-button:active {
+    color: black;
+}
