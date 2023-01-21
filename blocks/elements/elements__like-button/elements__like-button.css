@@ -1,13 +1,17 @@
 .elements__like-button {
-    max-width: 22px;
+    width: 22px;
+    height: 19px;
+    padding: 0;
     display: flex;
-    justify-self: flex-end;
     align-self: flex-end;
+    border: none;
+    background-color: transparent;
 }
 
 .elements__like-button:hover {
     opacity: 0.5;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 .elements__like-button:active {

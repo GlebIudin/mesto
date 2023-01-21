@@ -20,65 +20,67 @@
             <img class="profile__avatar" src="./images/ava-test.jpg" alt="Аватар пользователя">
             <div class="profile__info">
                 <h1 class="profile__username">Имя пользователя</h1>
-                <button class="profile__edit-button"><img class="profile__edit-image"
-                        src="./images/edit-button.svg" alt="Кнопка редактирования информации о пользователе"></button>
+                <button class="profile__edit-button"><img class="profile__edit-image" src="./images/edit-button.svg"
+                        alt="Кнопка редактирования информации о пользователе" type="button"></button>
                 <p class="profile__description">Краткая информация о пользователе</p>
             </div>
             <button class="profile__add-button"><img class="profile__add-image" src="./images/add-button.svg"
-                    alt="Кнопка добавления фото"> </button>
+                    alt="Кнопка добавления фото" type="button"> </button>
         </section>
         <section class="elements">
             <div class="elements__element">
-                <img class="elements__photo" src="./images/add-photos/isaac-cathedral.jpg" alt="">
+                <img class="elements__photo" src="./images/add-photos/isaac-cathedral.jpg" alt="Исакиевский собор">
                 <div class="elements__panel">
                     <div class="elements__bar">
                         <h2 class="elements__header">Исакиевский собор</h2>
-                        <img class="elements__like-button" src="./images/like-button.svg" alt="">
+                        <button class="elements__like-button" type="button"><img class="elements__img-like"
+                                src="./images/like-button.svg" alt="Лайк"></button>
                     </div>
                 </div>
             </div>
             <div class="elements__element">
-                <img class="elements__photo" src="./images/add-photos/eliseevy.jpg" alt="">
+                <img class="elements__photo" src="./images/add-photos/eliseevy.jpg" alt="Дом Купцов Елисеевых">
                 <div class="elements__panel">
                     <div class="elements__bar">
                         <h2 class="elements__header">Дом купцов Елисеевых</h2>
-                        <img class="elements__like-button" src="./images/like-button.svg" alt="">
+                        <button class="elements__like-button" type="button"><img class="elements__like-button"
+                                src="./images/like-button.svg" alt="Лайк"></button>
                     </div>
                 </div>
             </div>
             <div class="elements__element">
-                <img class="elements__photo" src="./images/add-photos/kremlin.jpg" alt="">
+                <img class="elements__photo" src="./images/add-photos/kremlin.jpg" alt="Кремль">
                 <div class="elements__panel">
                     <div class="elements__bar">
                         <h2 class="elements__header">Кремль</h2>
-                        <img class="elements__like-button" src="./images/like-button.svg" alt="">
+                        <button class="elements__like-button" type="button"><img class="elements__like-button" src="./images/like-button.svg" alt="Лайк"></button>
                     </div>
                 </div>
             </div>
             <div class="elements__element">
-                <img class="elements__photo" src="./images/add-photos/mikhailovsky.jpg" alt="">
+                <img class="elements__photo" src="./images/add-photos/mikhailovsky.jpg" alt="Михайловский замок">
                 <div class="elements__panel">
                     <div class="elements__bar">
                         <h2 class="elements__header">Михайловский замок</h2>
-                        <img class="elements__like-button" src="./images/like-button.svg" alt="">
+                        <button class="elements__like-button" type="button"><img class="elements__like-button" src="./images/like-button.svg" alt="Лайк"></button>
                     </div>
                 </div>
             </div>
             <div class="elements__element">
-                <img class="elements__photo" src="./images/add-photos/moscow-city.jpg" alt="">
+                <img class="elements__photo" src="./images/add-photos/moscow-city.jpg" alt="Москва-сити">
                 <div class="elements__panel">
                     <div class="elements__bar">
                         <h2 class="elements__header">Москва-сити</h2>
-                        <img class="elements__like-button" src="./images/like-button.svg" alt="">
+                        <button class="elements__like-button" type="button"><img class="elements__like-button" src="./images/like-button.svg" alt="Лайк"></button>
                     </div>
                 </div>
             </div>
             <div class="elements__element">
-                <img class="elements__photo" src="./images/add-photos/zimniy.jpg" alt="">
+                <img class="elements__photo" src="./images/add-photos/zimniy.jpg" alt="Зимний дворец">
                 <div class="elements__panel">
                     <div class="elements__bar">
                         <h2 class="elements__header">Зимний дворец</h2>
-                        <img class="elements__like-button" src="./images/like-button.svg" alt="">
+                        <button class="elements__like-button" type="button"><img class="elements__like-button" src="./images/like-button.svg" alt="Лайк"></button>
                     </div>
                 </div>
             </div>
@@ -90,16 +92,16 @@
     <div class="popup">
         <div class="popup__container">
             <button class="popup__close-button"><img class="popup__close-img" src="./images/close-img.svg"
-                    alt="Кнопка закрытия формы"></button>
+                    alt="Кнопка закрытия формы" type="button"></button>
             <h3 class="popup__title">Редактировать профиль</h3>
-            <form class="popup__form">
-                <input class="popup__input" id="name_input">
-                <input class="popup__input" id="job_input">
-                <button class="popup__save-button">Сохранить</button>
+            <form class="popup__form" name="formUser">
+                <input class="popup__input" id="name_input" name="name_input" placeholder="Ваше имя">
+                <input class="popup__input" id="job_input" name="job_input" placeholder="Ваша профессия">
+                <button class="popup__save-button" type="submit">Сохранить</button>
             </form>
         </div>
     </div>
-    <script src="./scripts/popup.js"></script>
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>

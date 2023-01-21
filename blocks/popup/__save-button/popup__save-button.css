@@ -11,15 +11,19 @@
     color: #FFFFFF;
     background-color: black;
     border-radius: 2px;
+    border: none;
 }
 
 .popup__save-button:hover {
     opacity: 0.8;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 520px) {
     .popup__save-button {
+        font-size: 14px;
+        line-height: 17px;
         width: 238px;
         height: 46px;
         margin-bottom: 25px;
