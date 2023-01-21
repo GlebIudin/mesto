@@ -7,10 +7,10 @@ let job = document.querySelector('.profile__description');
 function popOpen() {
     openPopup.classList.add('popup_opened');
 
-    console.log(name);
-    console.log(job);
-    nameInput.textContent = name.value,
-    jobInput.textContent = job.value;
+    console.log(name.textContent);
+    console.log(job.textContent);
+    nameInput.value = name.textContent;
+    jobInput.value = job.textContent;
 }
 
 function popClose() {
