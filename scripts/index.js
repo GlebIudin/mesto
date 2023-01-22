@@ -7,8 +7,6 @@ let job = document.querySelector('.profile__description');
 function popOpen() {
     openPopup.classList.add('popup_opened');
 
-    console.log(name.textContent);
-    console.log(job.textContent);
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
 }
@@ -34,8 +32,6 @@ function handleFormSubmit(evt) {
     // О том, как это делать, расскажем позже.
 
     // Получите значение полей jobInput и nameInput из свойства value
-    console.log(nameInput.value);
-    console.log(jobInput.value);
     // Выберите элементы, куда должны быть вставлены значения полей
 
     // Вставьте новые значения с помощью textContent
