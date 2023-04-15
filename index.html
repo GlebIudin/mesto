@@ -28,72 +28,25 @@
                     src="./images/add-button.svg" alt="Кнопка добавления фото"> </button>
         </section>
         <section class="elements">
-            <div class="elements__element">
-                <img class="elements__photo" src="./images/add-photos/isaac-cathedral.jpg" alt="Исакиевский собор">
-                <div class="elements__panel">
-                    <div class="elements__bar">
-                        <h2 class="elements__header">Исакиевский собор</h2>
-                        <button class="elements__like-button" type="button"><img class="elements__img-like"
-                                src="./images/like-button.svg" alt="Лайк"></button>
+            <template id="postTemplate">
+                <div class="elements__element">
+                    <button type="button" class="elements__photo_button" id="openedPhoto"><img class="elements__photo"
+                            id="photoTemplate"></button>
+                    <button class="elements__delete-button" type="button" id="cardDeleteButton"></button>
+                    <div class="elements__panel">
+                        <div class="elements__bar">
+                            <h2 class="elements__header" id="headerTemplate"></h2>
+                            <button class="elements__like-button" type="button" id="likeButton"></button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="elements__element">
-                <img class="elements__photo" src="./images/add-photos/eliseevy.jpg" alt="Дом Купцов Елисеевых">
-                <div class="elements__panel">
-                    <div class="elements__bar">
-                        <h2 class="elements__header">Дом купцов Елисеевых</h2>
-                        <button class="elements__like-button" type="button"><img class="elements__like-button"
-                                src="./images/like-button.svg" alt="Лайк"></button>
-                    </div>
-                </div>
-            </div>
-            <div class="elements__element">
-                <img class="elements__photo" src="./images/add-photos/kremlin.jpg" alt="Кремль">
-                <div class="elements__panel">
-                    <div class="elements__bar">
-                        <h2 class="elements__header">Кремль</h2>
-                        <button class="elements__like-button" type="button"><img class="elements__like-button"
-                                src="./images/like-button.svg" alt="Лайк"></button>
-                    </div>
-                </div>
-            </div>
-            <div class="elements__element">
-                <img class="elements__photo" src="./images/add-photos/mikhailovsky.jpg" alt="Михайловский замок">
-                <div class="elements__panel">
-                    <div class="elements__bar">
-                        <h2 class="elements__header">Михайловский замок</h2>
-                        <button class="elements__like-button" type="button"><img class="elements__like-button"
-                                src="./images/like-button.svg" alt="Лайк"></button>
-                    </div>
-                </div>
-            </div>
-            <div class="elements__element">
-                <img class="elements__photo" src="./images/add-photos/moscow-city.jpg" alt="Москва-сити">
-                <div class="elements__panel">
-                    <div class="elements__bar">
-                        <h2 class="elements__header">Москва-сити</h2>
-                        <button class="elements__like-button" type="button"><img class="elements__like-button"
-                                src="./images/like-button.svg" alt="Лайк"></button>
-                    </div>
-                </div>
-            </div>
-            <div class="elements__element">
-                <img class="elements__photo" src="./images/add-photos/zimniy.jpg" alt="Зимний дворец">
-                <div class="elements__panel">
-                    <div class="elements__bar">
-                        <h2 class="elements__header">Зимний дворец</h2>
-                        <button class="elements__like-button" type="button"><img class="elements__like-button"
-                                src="./images/like-button.svg" alt="Лайк"></button>
-                    </div>
-                </div>
-            </div>
+            </template>
         </section>
     </main>
     <footer class="footer">
         <p class="footer__sign">© 2023 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup" id="popupProfileEdit">
         <div class="popup__container">
             <button class="popup__close-button" type="button"><img class="popup__close-img" src="./images/close-img.svg"
                     alt="Кнопка закрытия формы"></button>
@@ -102,6 +55,27 @@
                 <input class="popup__input" id="name_input" name="name_input" placeholder="Ваше имя">
                 <input class="popup__input" id="job_input" name="job_input" placeholder="Ваша профессия">
                 <button class="popup__save-button" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup" id="popupAddPhoto">
+        <div class="popup__container">
+            <button class="popup__close-button" type="button" id="photoPopupClose"><img class="popup__close-img"
+                    src="./images/close-img.svg" alt="Кнопка закрытия формы"></button>
+            <h3 class="popup__title">Новое место</h3>
+            <form class="popup__form" name="formAddPhoto" id="photoAddForm">
+                <input class="popup__input" id="photoName_input" name="photoName_input" placeholder="Название">
+                <input class="popup__input" id="photoURL_input" name="photoURL_input" placeholder="Ссылка на картинку">
+                <button class="popup__save-button" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup" id="popupOpenPhoto">
+        <div class="popup__image-container">
+            <img class="popup__image"></img>
+            <button class="popup__close-button" type="button" id="photoPopupClose"><img class="popup__close-img"
+                    src="./images/close-img.svg" alt="Кнопка закрытия формы"></button>
+            <h3 class="popup__img-title"></h3>
             </form>
         </div>
     </div>
