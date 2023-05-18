@@ -93,10 +93,6 @@ addButton.addEventListener("click", function () {
 
 //Open photo listeners
 
-popupOpenPhoto.c
-photoClosePopupButton.addEventListener("click", popPhotoAddClose);
-
-
 popupOpenPhoto.addEventListener('click', function () {
   closePopup(popupOpenPhoto)
 });
