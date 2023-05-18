@@ -1,9 +1,6 @@
 const profilePopup = document.querySelector("#popupProfileEdit");
 const openAddPhotoPopup = document.querySelector("#popupAddPhoto");
-const editButton = document.querySelector(".profile__edit-button");
-const closeButton = document.querySelector(".popup__close-button");
 const addButton = document.querySelector(".profile__add-button");
-const photoClosePopupButton = document.querySelector("#photoPopupClose");
 const name = document.querySelector(".profile__username");
 const job = document.querySelector(".profile__description");
 const elements = document.querySelector(".elements");
@@ -22,6 +19,10 @@ const formElement = document.querySelector(".popup__form");
 const nameInput = document.querySelector("#name_input");
 const jobInput = document.querySelector("#job_input");
 const popup = document.querySelector('.popup')
+const closeButtons = document.querySelectorAll('.popup__close-button');
+const editButton = document.querySelector(".profile__edit-button");
+
+// Array
 
 const initialCards = [
   {
@@ -69,54 +70,29 @@ function fillInputs() {
   jobInput.value = job.textContent;
 }
 
-//Profile listeners
+// Listeners
+
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
+
 editButton.addEventListener("click", function () {
   openPopup(profilePopup)
 }, fillInputs());
-
-closeButton.addEventListener('click', function () {
-  closePopup(profilePopup);
-});
-
-//Add photo listeners
 
 addButton.addEventListener("click", function () {
   openPopup(openAddPhotoPopup);
 });
 
-photoClosePopupButton.addEventListener("click", function () {
-  closePopup(openAddPhotoPopup);
-});
-
-//Open photo listeners
-
-closeButton.addEventListener("click", function () {
-  closePopup(popupOpenPhoto)
-});
-
-popupOpenPhoto.addEventListener('click', function () {
-  closePopup(popupOpenPhoto)
-});
-
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
+// Обработчик «отправки» формы
 function handleFormSubmit(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  // Так мы можем определить свою логику отправки.
-  // О том, как это делать, расскажем позже.
-
-  // Получите значение полей jobInput и nameInput из свойства value
-  // Выберите элементы, куда должны быть вставлены значения полей
-
-  // Вставьте новые значения с помощью textContent
+  evt.preventDefault();
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
 
   closePopup(popup);
 }
-
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 formElement.addEventListener("submit", handleFormSubmit);
 
 function pushedLike(evt) {
@@ -136,7 +112,7 @@ function handleFormSubmitPhoto(evt) {
   evt.preventDefault();
   const userPostCopy = createCard({
     link: photoURL.value,
-    alt: "Созданное пользователем изображение",
+    alt: photoName.value,
     name: photoName.value
   });
   elements.prepend(userPostCopy);
