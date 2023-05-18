@@ -69,10 +69,6 @@ function fillInputs() {
   jobInput.value = job.textContent;
 }
 
-function popPhotoAddClose() {
-  openAddPhotoPopup.classList.remove("popup_opened");
-}
-
 //Profile listeners
 editButton.addEventListener("click", function () {
   openPopup(profilePopup)
@@ -80,18 +76,23 @@ editButton.addEventListener("click", function () {
 
 closeButton.addEventListener('click', function () {
   closePopup(profilePopup);
-})
+});
 
 //Add photo listeners
-closeButton.addEventListener("click", function () {
-  closePopup(openAddPhotoPopup);
-});
 
 addButton.addEventListener("click", function () {
   openPopup(openAddPhotoPopup);
 });
 
+photoClosePopupButton.addEventListener("click", function () {
+  closePopup(openAddPhotoPopup);
+});
+
 //Open photo listeners
+
+closeButton.addEventListener("click", function () {
+  closePopup(popupOpenPhoto)
+});
 
 popupOpenPhoto.addEventListener('click', function () {
   closePopup(popupOpenPhoto)
@@ -140,7 +141,7 @@ function handleFormSubmitPhoto(evt) {
   });
   elements.prepend(userPostCopy);
 
-  popPhotoAddClose();
+  closePopup(openAddPhotoPopup);
   evt.target.reset()
 };
 
