@@ -51,9 +51,13 @@
             <button class="popup__close-button" type="button"><img class="popup__close-img" src="./images/close-img.svg"
                     alt="Кнопка закрытия формы"></button>
             <h3 class="popup__title">Редактировать профиль</h3>
-            <form class="popup__form" name="formUser">
-                <input class="popup__input" id="name_input" name="name_input" placeholder="Ваше имя">
-                <input class="popup__input" id="job_input" name="job_input" placeholder="Ваша профессия">
+            <form class="popup__form" name="formUser" id="userForm" novalidate>
+                <input class="popup__input" id="name_input" name="name_input" placeholder="Ваше имя" required
+                    minlength="2" maxlength="40">
+                <span id="name_input-error" class="popup__error"></span>
+                <input class="popup__input" id="job_input" name="job_input" placeholder="Ваша профессия" required
+                    minlength="2" maxlength="200">
+                <span id="job_input-error" class="popup__error"></span>
                 <button class="popup__save-button" type="submit">Сохранить</button>
             </form>
         </div>
@@ -63,9 +67,13 @@
             <button class="popup__close-button" type="button" id="photoPopupClose"><img class="popup__close-img"
                     src="./images/close-img.svg" alt="Кнопка закрытия формы"></button>
             <h3 class="popup__title">Новое место</h3>
-            <form class="popup__form" name="formAddPhoto" id="photoAddForm">
-                <input class="popup__input" id="photoName_input" name="photoName_input" placeholder="Название">
-                <input class="popup__input" id="photoURL_input" name="photoURL_input" placeholder="Ссылка на картинку">
+            <form class="popup__form" name="formAddPhoto" id="photoAddForm" novalidate>
+                <input class="popup__input" id="photoName_input" name="photoName_input" placeholder="Название" required
+                    minlength="2" maxlength="30">
+                <span id="photoName_input-error" class="popup__error"></span>
+                <input class="popup__input" id="photoURL_input" name="photoURL_input" placeholder="Ссылка на картинку"
+                    type="url" required>
+                <span id="photoURL_input-error" class="popup__error"></span>
                 <button class="popup__save-button" type="submit">Сохранить</button>
             </form>
         </div>
@@ -79,6 +87,7 @@
         </div>
     </div>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 
 </html>

@@ -59,6 +59,8 @@ const initialCards = [
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+
+  handlePopupOverlay(popup);
 }
 
 function closePopup(popup) {
@@ -69,6 +71,32 @@ function fillInputs() {
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
 }
+
+//Код отвечающий за закрытие по оверлэю и эскейпу
+
+function handleClosePopup (popup) {
+  const popupOpened = document.querySelector('.popup_opened');
+  popupOpened.classList.remove('popup_opened');
+}
+
+const closePopupByOverlay = (evt) => {
+  if(evt.target === evt.currentTarget) {
+    handleClosePopup(evt.target);
+  }
+}
+
+function handlePopupOverlay (popup) {
+  popup.addEventListener('click', closePopupByOverlay);
+}
+
+const closePopupByEsc = (evt) => {
+  const popupOpened = document.querySelector('.popup_opened');
+  if (evt.code === 'Escape' && popupOpened) {
+    handleClosePopup(popupOpened);
+  }
+}
+
+document.addEventListener('keydown', closePopupByEsc);
 
 // Listeners
 
@@ -148,6 +176,7 @@ function createCard(item) {
     popupImageTitle.alt = item.alt;
   });
 
+  popupOpenPhoto.addEventListener('click', closePopupByOverlay)
+  
   return userPostCopy
 }
-

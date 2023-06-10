@@ -20,6 +20,13 @@
     cursor: pointer;
 }
 
+.popup__save-button:disabled {
+    border: 1px solid #000000;
+    background: #E5E5E5;
+    opacity: 0.2;
+    color: #000000;
+}
+
 @media screen and (max-width: 580px) {
     .popup__save-button {
         font-size: 14px;
