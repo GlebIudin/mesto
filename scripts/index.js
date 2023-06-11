@@ -22,81 +22,52 @@ const popup = document.querySelector('.popup')
 const closeButtons = document.querySelectorAll('.popup__close-button');
 const editButton = document.querySelector(".profile__edit-button");
 
-// Array
-
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    alt: "Виды Архыза",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    alt: "Виды Челябинской области",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    alt: "Виды города Иваново",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    alt: "Виды Камчатки",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    alt: "Виды Холмогорского района",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    alt: "Виды Байкала",
-  },
-];
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-
-  handlePopupOverlay(popup);
+const closePopupByOverlay = (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target)
+  }
 }
 
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
+popupOpenPhoto.addEventListener('click', closePopupByOverlay)
+
+function handlePopupOverlay(popup) {
+  popup.addEventListener('click', closePopupByOverlay);
 }
 
-function fillInputs() {
+profilePopup.addEventListener('click', handlePopupOverlay(popup));
+openAddPhotoPopup.addEventListener('click', handlePopupOverlay(openAddPhotoPopup));
+popupOpenPhoto.addEventListener('click', handlePopupOverlay(popup));
+
+function fillProfileInputs() {
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
 }
 
 //Код отвечающий за закрытие по оверлэю и эскейпу
 
-function handleClosePopup (popup) {
+function handleClosePopup(popup) {
   const popupOpened = document.querySelector('.popup_opened');
-  popupOpened.classList.remove('popup_opened');
-}
-
-const closePopupByOverlay = (evt) => {
-  if(evt.target === evt.currentTarget) {
-    handleClosePopup(evt.target);
-  }
-}
-
-function handlePopupOverlay (popup) {
-  popup.addEventListener('click', closePopupByOverlay);
+  closePopup(popupOpened)
 }
 
 const closePopupByEsc = (evt) => {
-  const popupOpened = document.querySelector('.popup_opened');
-  if (evt.code === 'Escape' && popupOpened) {
+  if (evt.code === 'Escape' && popup) {
+    const popupOpened = document.querySelector('.popup_opened');
     handleClosePopup(popupOpened);
   }
 }
 
-document.addEventListener('keydown', closePopupByEsc);
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEsc);
+  const saveButton = document.querySelectorAll('.popup__save-button');
+  saveButton.disabled;
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEsc);
+}
 
 // Listeners
 
@@ -107,7 +78,7 @@ closeButtons.forEach((button) => {
 
 editButton.addEventListener("click", function () {
   openPopup(profilePopup)
-}, fillInputs());
+}, fillProfileInputs(nameInput, jobInput));
 
 addButton.addEventListener("click", function () {
   openPopup(openAddPhotoPopup);
@@ -147,6 +118,8 @@ function handleFormSubmitPhoto(evt) {
 
   closePopup(openAddPhotoPopup);
   evt.target.reset()
+  const buttonSubmit = document.querySelectorAll('.popup__save-button');
+  buttonSubmit.disabled
 };
 
 formPhotoElement.addEventListener("submit", handleFormSubmitPhoto);
@@ -170,13 +143,11 @@ function createCard(item) {
   const cardOpenButton = userPostCopy.querySelector('#openedPhoto');
 
   cardOpenButton.addEventListener("click", function (event) {
-    popupOpenPhoto.classList.add('popup_opened');
+    openPopup(popupOpenPhoto)
     popupImage.src = item.link;
     popupImageTitle.textContent = item.name;
     popupImageTitle.alt = item.alt;
   });
 
-  popupOpenPhoto.addEventListener('click', closePopupByOverlay)
-  
   return userPostCopy
 }

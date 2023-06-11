@@ -14,19 +14,28 @@ function enableValidation(config) {
     const formList = Array.from(document.querySelectorAll(config.formSelector));
 
     formList.forEach((form) => {
-        enableFormValidation(form, config);
+        setEventListeners(form, config);
     })
 }
 
-function enableFormValidation(form, config) {
+function setEventListeners (form, config) {
+    const inputList = Array.from(form.querySelectorAll(config.inputSelector));
+    const buttonSubmit = form.querySelector(config.buttonSelector);
+
+    inputList.forEach(function (item) {
+        item.addEventListener('input', (evt) => {
+            handleFormInput(evt, config)
+        });
+    })
+    
     form.addEventListener('submit', disableSubmit);
     form.addEventListener('input', () => {
-        toggleButton(form, config);
+        toggleButton(form, buttonSubmit, config);
     });
 
-    addInputListeners(form, config);
-    toggleButton(form, config);
+    toggleButton(form, buttonSubmit, config);
 }
+
 
 function handleFormInput(evt, config) {
     const input = evt.target;
@@ -41,22 +50,10 @@ function handleFormInput(evt, config) {
     }
 }
 
-function addInputListeners(form, config) {
-    const inputList = Array.from(form.querySelectorAll(config.inputSelector));
-
-    inputList.forEach(function (item) {
-        item.addEventListener('input', (evt) => {
-            handleFormInput(evt, config)
-        });
-    })
-}
-
-function toggleButton(form, config) {
-    const buttonSubmit = form.querySelector(config.buttonSelector);
+function toggleButton(form, buttonSubmit) {
     const isFormValid = form.checkValidity();
 
     buttonSubmit.disabled = !isFormValid;
-    buttonSubmit.classList.toggle('button_disabled')
 }
 
 enableValidation(formValidationConfig);
