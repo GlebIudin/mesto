@@ -6,8 +6,7 @@ const job = document.querySelector(".profile__description");
 const elements = document.querySelector(".elements");
 const postTemplate = document.querySelector("#postTemplate");
 const userPost = postTemplate.content.querySelector(".elements__element");
-const photoURLTemplate = userPost.querySelector("#photoTemplate");
-const photoAltTemplate = userPost.querySelector("#photoTemplate");
+const photoTemplate = userPost.querySelector("#photoTemplate");
 const photoNameTemplate = userPost.querySelector("#headerTemplate");
 const popupOpenPhoto = document.querySelector('#popupOpenPhoto');
 const popupImage = document.querySelector('.popup__image')
@@ -15,12 +14,13 @@ const popupImageTitle = document.querySelector('.popup__img-title')
 const formPhotoElement = document.querySelector("#photoAddForm");
 const photoName = document.querySelector("#photoName_input");
 const photoURL = document.querySelector("#photoURL_input");
-const formElement = document.querySelector(".popup__form");
+const formPhoto = document.querySelector("#photoAddForm");
+const formProfile = document.querySelector('#userForm');
 const nameInput = document.querySelector("#name_input");
 const jobInput = document.querySelector("#job_input");
-const popup = document.querySelector('.popup')
 const closeButtons = document.querySelectorAll('.popup__close-button');
 const editButton = document.querySelector(".profile__edit-button");
+const buttonSubmitPhoto = document.querySelector('#buttonSubmitPhoto');
 
 const closePopupByOverlay = (evt) => {
   if (evt.target === evt.currentTarget) {
@@ -29,16 +29,10 @@ const closePopupByOverlay = (evt) => {
 }
 
 popupOpenPhoto.addEventListener('click', closePopupByOverlay)
+profilePopup.addEventListener('click', closePopupByOverlay);
+openAddPhotoPopup.addEventListener('click', closePopupByOverlay);
 
-function handlePopupOverlay(popup) {
-  popup.addEventListener('click', closePopupByOverlay);
-}
-
-profilePopup.addEventListener('click', handlePopupOverlay(popup));
-openAddPhotoPopup.addEventListener('click', handlePopupOverlay(openAddPhotoPopup));
-popupOpenPhoto.addEventListener('click', handlePopupOverlay(popup));
-
-function fillProfileInputs() {
+function fillProfileInputs(profilePopup) {
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
 }
@@ -46,22 +40,19 @@ function fillProfileInputs() {
 //Код отвечающий за закрытие по оверлэю и эскейпу
 
 function handleClosePopup(popup) {
-  const popupOpened = document.querySelector('.popup_opened');
-  closePopup(popupOpened)
+  closePopup(popup)
 }
 
 const closePopupByEsc = (evt) => {
-  if (evt.code === 'Escape' && popup) {
+  if (evt.code === 'Escape' && evt.currentTarget) {
     const popupOpened = document.querySelector('.popup_opened');
     handleClosePopup(popupOpened);
   }
 }
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
+function openPopup(profilePopup) {
+  profilePopup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEsc);
-  const saveButton = document.querySelectorAll('.popup__save-button');
-  saveButton.disabled;
 }
 
 function closePopup(popup) {
@@ -77,22 +68,25 @@ closeButtons.forEach((button) => {
 });
 
 editButton.addEventListener("click", function () {
-  openPopup(profilePopup)
-}, fillProfileInputs(nameInput, jobInput));
+  fillProfileInputs()
+  openPopup(profilePopup);
+});
 
 addButton.addEventListener("click", function () {
   openPopup(openAddPhotoPopup);
 });
 
 // Обработчик «отправки» формы
-function handleFormSubmit(evt) {
+function handleFormSubmitProfile(evt) {
   evt.preventDefault();
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
 
-  closePopup(popup);
+  closePopup(profilePopup);
 }
-formElement.addEventListener("submit", handleFormSubmit);
+
+formProfile.addEventListener("submit", handleFormSubmitProfile);
+formPhoto.addEventListener("submit", handleFormSubmitPhoto);
 
 function pushedLike(evt) {
   evt.target.classList.toggle("elements__like-button_active");
@@ -102,10 +96,6 @@ initialCards.forEach((card) => {
   const userPostCopy = createCard(card);
   elements.append(userPostCopy);
 });
-
-function pushedLike(evt) {
-  evt.target.classList.toggle('elements__like-button_active');
-}
 
 function handleFormSubmitPhoto(evt) {
   evt.preventDefault();
@@ -118,15 +108,14 @@ function handleFormSubmitPhoto(evt) {
 
   closePopup(openAddPhotoPopup);
   evt.target.reset()
-  const buttonSubmit = document.querySelectorAll('.popup__save-button');
-  buttonSubmit.disabled
+  buttonSubmitPhoto.disabled = true;
 };
 
 formPhotoElement.addEventListener("submit", handleFormSubmitPhoto);
 
 function createCard(item) {
-  photoURLTemplate.src = item.link;
-  photoAltTemplate.alt = item.alt;
+  photoTemplate.src = item.link;
+  photoTemplate.alt = item.alt;
   photoNameTemplate.textContent = item.name;
   const userPostCopy = postTemplate.content.cloneNode(true);
 
