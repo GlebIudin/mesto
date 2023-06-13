@@ -39,14 +39,10 @@ function fillProfileInputs(profilePopup) {
 
 //Код отвечающий за закрытие по оверлэю и эскейпу
 
-function handleClosePopup(popup) {
-  closePopup(popup)
-}
-
 const closePopupByEsc = (evt) => {
-  if (evt.code === 'Escape' && evt.currentTarget) {
+  if (evt.code === 'Escape') {
     const popupOpened = document.querySelector('.popup_opened');
-    handleClosePopup(popupOpened);
+    closePopup(popupOpened);
   }
 }
 
@@ -88,7 +84,7 @@ function handleFormSubmitProfile(evt) {
 formProfile.addEventListener("submit", handleFormSubmitProfile);
 formPhoto.addEventListener("submit", handleFormSubmitPhoto);
 
-function pushedLike(evt) {
+function toggleLike(evt) {
   evt.target.classList.toggle("elements__like-button_active");
 }
 
@@ -121,7 +117,7 @@ function createCard(item) {
 
   const like = userPostCopy.querySelector('#likeButton');
 
-  like.addEventListener('click', pushedLike);
+  like.addEventListener('click', toggleLike);
 
   const cardDeleteButton = userPostCopy.querySelector("#cardDeleteButton");
   cardDeleteButton.addEventListener('click', function () {
