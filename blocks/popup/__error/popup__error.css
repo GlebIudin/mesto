@@ -10,4 +10,10 @@
     min-height: 30px;
     width: 430px;
     text-align: center;
+    visibility: visible;
+}
+
+.popup__input_type_error {
+    border-color: #FF0000;
+    visibility: hidden;
 }
