@@ -1,0 +1,7 @@
+.elements__photo_button {
+    display: flex;
+    border: none;
+    padding: 0;
+    background: none;
+    width: 100%;
+}

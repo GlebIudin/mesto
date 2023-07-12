@@ -1,0 +1,7 @@
+.popup_opened {
+   align-content: center;
+   visibility: visible;
+   opacity: 1;
+   transition: 0.5s;
+   align-items: flex-start;
+}
