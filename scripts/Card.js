@@ -25,7 +25,7 @@ export default class Card {
     });
 
     this.likeButton.addEventListener("click", (evt) => {
-      this._pushedLike(evt);
+      this._toggleLike(evt);
     });
 
     this.openPhotoButton.addEventListener("click", () => {
@@ -33,12 +33,12 @@ export default class Card {
     });
   }
   //нажатый лайк
-  _pushedLike(evt) {
-    evt.target.classList.toggle("elements__like-button_active");
+  _toggleLike() {
+    this.likeButton.classList.toggle("elements__like-button_active");
   }
   //удаление карточки
-  _deleteCard(evt) {
-    evt.target.closest(".elements__element").remove();
+  _deleteCard() {
+    this.newCard.closest(".elements__element").remove();
   }
   //открытие попапа с фотографией
   _openCard(name, link) {
@@ -47,11 +47,12 @@ export default class Card {
   //создание карточки
   generate() {
     this.newCard = this._getTemplate();
+    const photoTemplate = this.newCard.querySelector("#photoTemplate")
     this._setEventListeners();
 
-    this.newCard.querySelector("#headerTemplate").innerText = this.name;
-    this.newCard.querySelector("#photoTemplate").src = this.link;
-    this.newCard.querySelector("#photoTemplate").alt = this.name;
+    this.newCard.querySelector("#headerTemplate").textContent = this.name;
+    photoTemplate.src = this.link;
+    photoTemplate.alt = this.name;
 
     return this.newCard;
   }

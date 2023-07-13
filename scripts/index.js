@@ -25,6 +25,7 @@ startingCards(InitialCards);
 
 function openCard(name, link) {
   constants.photoPopupName.textContent = name;
+  constants.photoPopupImage.alt = name;
   constants.photoPopupImage.src = link;
   openPopup(constants.photoPopup);
 } 
@@ -91,12 +92,6 @@ function handleFormSubmitProfile(evt) {
 constants.formProfile.addEventListener("submit", handleFormSubmitProfile);
 constants.formPhoto.addEventListener("submit", handleFormSubmitPhoto);
 
-
-// initialCards.forEach((card) => {
-//   const userPostCopy = createCard(card);
-//   constants.elementsContainer.append(userPostCopy);
-// });
-
 function handleFormSubmitPhoto(evt) {
   evt.preventDefault();
   const userPostCopy = loadCard({
@@ -107,7 +102,7 @@ function handleFormSubmitPhoto(evt) {
 
   closePopup(constants.popupAddPhoto);
   evt.target.reset()
-  buttonSubmitPhoto.disabled = true;
+  formAddPhotoValidation._toggleButton();
 };
 
 // и её слушатель
