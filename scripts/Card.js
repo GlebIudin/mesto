@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(item, selector, openPopupHandler) {
-    this.name = item.name;
-    this.link = item.link;
+  constructor(info, selector, handleCardClick) {
+    this.name = info.name;
+    this.link = info.link;
     this.selector = selector;
-    this.openPopupHandler = openPopupHandler;
+    this._handleCardClick = handleCardClick;
   }
 
   //получил темплейт
@@ -29,7 +29,7 @@ export default class Card {
     });
 
     this.openPhotoButton.addEventListener("click", () => {
-      this._openCard(this.name, this.link);
+      this._handleCardClick(this.name, this.link);
     });
   }
   //нажатый лайк
@@ -39,10 +39,6 @@ export default class Card {
   //удаление карточки
   _deleteCard() {
     this.newCard.closest(".elements__element").remove();
-  }
-  //открытие попапа с фотографией
-  _openCard(name, link) {
-    this.openPopupHandler(name, link);
   }
   //создание карточки
   generate() {
