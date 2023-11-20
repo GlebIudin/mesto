@@ -1,0 +1,10 @@
+export const containerSelector = document.querySelector('.elements');
+export const profileEditButton = document.querySelector('.profile__edit-button');
+export const popupCloseButton = document.querySelector('.popup__close-button')
+export const profilePopupSelector = document.querySelector('#profilePopupForm');
+export const addPhotoPopupSelector = document.querySelector('#photoPopupForm');
+export const profileAddButton = document.querySelector('.profile__add-button');
+export const openedPhotoPopupSelector = document.querySelector('#popupPhoto');
+export const nameInput = document.querySelector("#name_input");
+export const jobInput = document.querySelector("#job_input");
+export const addPhotoButton = document.querySelector('.profile__add-button');

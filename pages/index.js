@@ -1,67 +1,85 @@
-import Card from '../scripts/Card.js';
-import InitialCards from '../scripts/cards.js';
-import PopupWithImage from '../scripts/PopupWithImage';
-import Section from "../scripts/Section";
+import Card from '../components/Card.js';
+import initialCards from '../src/utils/cards.js';
+import { containerSelector, profileEditButton, profilePopupSelector, popupCloseButton, addPhotoPopupSelector, profileAddButton, openedPhotoPopupSelector, nameInput, jobInput, addPhotoButton } from '../src/utils/constants.js';
+import FormValidator from '../components/FormValidation';
+import Popup from '../components/Popup.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
+import formValidationConfig from '../src/utils/validate.js';
 import '../pages/index.css';
-import PopupWithForm from "../scripts/PopupWithForm";
-import { jobInput, nameInput, popupAddPhoto, profilePopup } from "../scripts/constants";
-import FormValidator from "../scripts/FormValidation";
-import validate from "../scripts/validate";
-import UserInfo from '../scripts/UserInfo.js';
 
-const popupWithImage = new PopupWithImage('#popupPhoto');
-popupWithImage.setEventListeners();
-const section = new Section({
-  items: InitialCards,
-  createElementHandler: (cardInfo) => {
-    const card = new Card(
-      cardInfo,
-      '#postTemplate',
-      () => popupWithImage.open(cardInfo.name, cardInfo.link)
-    );
-    return card.generate();
-  }
-}, '.elements');
+//Функция открытия карточки
+function handleCardClick(name, link) {
+  openedPhotoPopup.open(name, link);
+}
 
-const addPhotoPopup = new PopupWithForm('#popupAddPhoto', (inputInfo) => {
-  const card = new Card(
-    {
-      name: inputInfo.photoName_input,
-      link: inputInfo.photoURL_input
-    },
-    '#postTemplate',
-    () => popupWithImage.open(inputInfo.photoName_input, inputInfo.photoURL_input)
-  );
-  const cardTemplate = card.generate();
-  section.addItem(cardTemplate);
-});
-addPhotoPopup.setEventListeners();
+//Создаём экземпляр класса PopupWithForm для попапа профиля
+const profilePopup = new PopupWithForm(profilePopupSelector, handleFormSubmitProfile);
+profilePopup.setEventListeners();
 
-const userInformation = new UserInfo('.profile__username', '.profile__description');
+//Накинули слушателя на кнопку редактирования инфы профиля. Создаём userInfo, который вызывает метод getUserInfo и подставляем полученные значения в инпуты.
+profileEditButton.addEventListener('click', () => {
+  const userInfo = userData.getUserInfo();
+  nameInput.value = userInfo.nameSelector;
+  jobInput.value = userInfo.jobSelector;
 
-const profileEditPopup = new PopupWithForm('#popupProfileEdit', (inputInfo) => {
-  inputInfo = { nameInput, jobInput };
-  userInformation.setUserInfo(nameInput.value, jobInput.value);
-  profileEditPopup.close()
+  profileValidation.updateValidationProcces();
+
+  profilePopup.open();
 });
 
+//Создаём экземпляр класса UserInfo для обработки данных юзера.
+const userData = new UserInfo({ nameSelector: '.profile__username', jobSelector: '.profile__description' })
 
-document.querySelector('.profile__edit-button').addEventListener('click', function (event) {
-  const [nameElement, descriptionElement] = userInformation.getUserInfo();
-  nameInput.value = nameElement;
-  jobInput.value = descriptionElement;
-  profileEditPopup.open();
+//Функция сабмита попапа профиля
+function handleFormSubmitProfile(data) {
+  userData.setUserInfo(data);
+  profilePopup.close();
+}
+
+//Подключаем валидацию к попапу заполнения инфы профиля.
+const profileValidation = new FormValidator(formValidationConfig, profilePopupSelector);
+profileValidation.enableValidation();
+
+//Создаём экземпляр класса PopupWithForm для попапа добавления фото
+const addPhotoPopup = new PopupWithForm(addPhotoPopupSelector, handleFormSubmitCards);
+addPhotoPopup.setEventListeners()
+
+//Функция сабмита попапа добавления фото
+function handleFormSubmitCards(item) {
+  createCard(item);
+  addPhotoPopup.close();
+};
+
+//Подключаем валидацию к попапу добавления фото.
+const formPhotoValidation = new FormValidator(formValidationConfig, addPhotoPopupSelector);
+formPhotoValidation.enableValidation();
+
+//Накинули слушателя на кнопку добавления фото.
+addPhotoButton.addEventListener('click', () => {
+  formPhotoValidation.updateValidationProcces();
+  addPhotoPopup.open()
 })
-profileEditPopup.setEventListeners();
 
-document.querySelector('.profile__add-button').addEventListener('click', () => {
-  addPhotoPopup.open();
-})
+//Функция создания карточки
+function createCard(item) {
+  const card = new Card(item, '#postTemplate', handleCardClick);
+  const cardPost = card.generate();
+  cardList.addItem(cardPost);
+}
 
-const formEditProfileValidation = new FormValidator(validate, profilePopup);
-formEditProfileValidation.enableValidation();
-const formAddPhotoValidation = new FormValidator(validate, popupAddPhoto);
-formAddPhotoValidation.enableValidation();
+//Создаём экземпляр класса Section для подгрузки массива initialCards
+const cardList = new Section({
+  renderer: (element) => createCard(element),
+},
+  '.elements',
+);
 
+//Зарендерили массив
+cardList.renderElements(initialCards);
 
-
+//Создаём экземпляр класса PopupWithImage для попапа с открытым фото
+const openedPhotoPopup = new PopupWithImage(openedPhotoPopupSelector);
+openedPhotoPopup.setEventListeners();

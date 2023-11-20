@@ -21,7 +21,8 @@
             <div class="profile__info">
                 <h1 class="profile__username" id="existing_username">имяТест</h1>
                 <button class="profile__edit-button" type="button"><img class="profile__edit-image"
-                        src="<%=require('./images/edit-button.svg')%>" alt="Кнопка редактирования информации о пользователе"></button>
+                        src="<%=require('./images/edit-button.svg')%>"
+                        alt="Кнопка редактирования информации о пользователе"></button>
                 <p class="profile__description" id="existing_description">джобТест</p>
             </div>
             <button class="profile__add-button" type="button"><img class="profile__add-image"
@@ -46,10 +47,10 @@
     <footer class="footer">
         <p class="footer__sign">© 2023 Mesto Russia</p>
     </footer>
-    <div class="popup" id="popupProfileEdit">
+    <div class="popup" id="profilePopupForm">
         <div class="popup__container">
-            <button class="popup__close-button" type="button"><img class="popup__close-img" src="<%=require('./images/close-img.svg')%>"
-                    alt="Кнопка закрытия формы"></button>
+            <button class="popup__close-button" type="button"><img class="popup__close-img"
+                    src="<%=require('./images/close-img.svg')%>" alt="Кнопка закрытия формы"></button>
             <h3 class="popup__title">Редактировать профиль</h3>
             <form class="popup__form" name="formUser" id="userForm" novalidate>
                 <input class="popup__input" id="name_input" name="name_input" placeholder="Ваше имя" required
@@ -62,16 +63,16 @@
             </form>
         </div>
     </div>
-    <div class="popup" id="popupAddPhoto">
+    <div class="popup" id="photoPopupForm">
         <div class="popup__container">
             <button class="popup__close-button" type="button" id="photoPopupClose"><img class="popup__close-img"
                     src="<%=require('./images/close-img.svg')%>" alt="Кнопка закрытия формы"></button>
             <h3 class="popup__title">Новое место</h3>
             <form class="popup__form" name="formAddPhoto" id="photoAddForm" novalidate>
-                <input class="popup__input" id="photoName_input" name="photoName_input" placeholder="Название" required
+                <input class="popup__input" id="photoName_input" name="name" placeholder="Название" required
                     minlength="2" maxlength="30">
                 <span id="photoName_input-error" class="popup__error"></span>
-                <input class="popup__input" id="photoURL_input" name="photoURL_input" placeholder="Ссылка на картинку"
+                <input class="popup__input" id="photoURL_input" name="link" placeholder="Ссылка на картинку"
                     type="url" required>
                 <span id="photoURL_input-error" class="popup__error"></span>
                 <button class="popup__save-button" type="submit" id="buttonSubmitPhoto">Сохранить</button>
@@ -81,16 +82,12 @@
     <div class="popup" id="popupPhoto">
         <div class="popup__image-container">
             <img class="popup__image">
-            <button class="popup__close-button" type="button"><img class="popup__close-img" src="<%=require('./images/close-img.svg')%>"
-                    alt="Кнопка закрытия формы"></button>
+            <button class="popup__close-button" type="button"><img class="popup__close-img"
+                    src="<%=require('./images/close-img.svg')%>" alt="Кнопка закрытия формы"></button>
             <h3 class="popup__img-title"></h3>
         </div>
 
     </div>
-    <script type="module" src="./scripts/constants.js"></script>
-    <script type="module" src="./scripts/cards.js"></script>
-    <script type="module" src="./scripts/validate.js"></script>
-    <script type="module" src="./pages/index.js"></script>
 </body>
 
 </html>
